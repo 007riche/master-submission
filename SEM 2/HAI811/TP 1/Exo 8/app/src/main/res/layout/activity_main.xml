@@ -45,7 +45,7 @@
                     android:text="@string/departure_label" />
 
                 <EditText
-                    android:id="@+id/lastNameEditText"
+                    android:id="@+id/departureCityEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -70,7 +70,7 @@
                     android:text="@string/arrival_label" />
 
                 <EditText
-                    android:id="@+id/firstNameEditText"
+                    android:id="@+id/destinationCityEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"

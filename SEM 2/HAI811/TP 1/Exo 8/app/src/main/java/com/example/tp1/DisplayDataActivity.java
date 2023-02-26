@@ -1,55 +1,60 @@
 package com.example.tp1;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.tp1.models.Person;
+import com.example.tp1.models.Journeys;
+
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DisplayDataActivity extends AppCompatActivity {
+    private ListView availabilityListView;
+    private Button goBack;
+    List<Journeys> journeysData;
 
-    private Person person;
-    private TextView first_name;
-    private TextView last_name;
-    private TextView phoneNumber;
-    private TextView domain;
-    private Button callButton;
-    private String phoneNumberDigits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_data);
 
-        // Retrieve all the views
-        first_name = (TextView) findViewById(R.id.first_name);
-        last_name = (TextView) findViewById(R.id.last_name);
-        phoneNumber = (TextView) findViewById(R.id.phoneNumber);
-        domain = (TextView) findViewById(R.id.domain);
-        callButton = (Button) findViewById(R.id.goBack);
+        journeysData = (List<Journeys>) getIntent().getSerializableExtra("journeys");
+        System.out.println("Size data: "+journeysData.size());
+        availabilityListView = (ListView) findViewById(R.id.availabilityListView);
+        goBack = (Button) findViewById(R.id.goBack);
 
-        person = (Person) getIntent().getSerializableExtra("person");
+//        ArrayAdapter adapter = new ArrayAdapter<Journeys>(this, journeysData);
+
+        JourneyItemAdapter adapter = new JourneyItemAdapter(this, journeysData);
+        availabilityListView.setAdapter(adapter);
 
 
-        // Fill the fields with the object passed through the intent
-        first_name.setText(person.getFirstName());
-        last_name.setText(person.getLastName());
-        domain.setText(person.getProfessionalDomain());
-        phoneNumber.setText(person.getPhoneNumber());
-
-        callButton.setOnClickListener(new View.OnClickListener() {
+        goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phoneNumberDigits = phoneNumber.getText().toString();
-                Uri uri = Uri.parse("tel:"+phoneNumberDigits);
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, uri);
-                startActivity(dialIntent);
+                Intent goBackIntent =  new Intent(DisplayDataActivity.this, MainActivity.class);
+                startActivity(goBackIntent);
+                finish();
             }
         });
+
+
     }
 }
+
