@@ -12,6 +12,8 @@
     <string name="back">Retour</string>
     <string name="from_label">De:</string>
     <string name="to_label">A:</string>
-
+<!--    <declare-styleable name="ExtentedCalendarView">-->
+<!--        <attr name="dates" format="reference" />-->
+<!--    </declare-styleable>-->
 
 </resources>

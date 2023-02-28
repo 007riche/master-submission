@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/agendaTextView"
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:layout_marginStart="15dp"
@@ -29,13 +29,16 @@
             android:textSize="24sp"
             android:textStyle="bold|italic" />
 
-        <CalendarView
-            android:id="@+id/calendarView3"
+        <com.example.tp1.CustomWidget.CustomCalendarView
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+
+            />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/eventLabel"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:gravity="center_horizontal|center_vertical"
@@ -52,6 +55,7 @@
                 android:orientation="vertical">
 
                 <ListView
+                    android:id="@+id/eventListView"
                     android:layout_width="match_parent"
                     android:layout_height="293dp" />
             </LinearLayout>
